@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from polls.api import EntryResource
+
+entry_resource = EntryResource()
 
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^blog/', include('polls.urls')),
+    url(r'^api/', include(entry_resource.urls)),
 ]
